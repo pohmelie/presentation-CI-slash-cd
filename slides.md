@@ -154,6 +154,18 @@
 
 ---
 
+# Chaotic
+
+![commits-chaotic](images/commits-chaotic.png)
+
+---
+
+# Regular
+
+![commits-regular](images/commits-regular.png)
+
+---
+
 # Buildbot pipeline
 
 ![pipeline](images/buildbot-pipeline.png)
