@@ -46,7 +46,7 @@
 
 * CI: buildbot (python 2.7)
 * Targets: astra 1.5, windows(?)
-* Internal tools: packaging, cprorab (c++/cmake)
+* Internal tools: packaging, cprorab (c++/cmake), aptlier
 * External tools: fpm, docker
 * Storage: reprepro
 
@@ -56,16 +56,10 @@
 
 * CI: buildbot (python 3)
 * Targets: astra 1.5, ubuntu 16.04, docker, windows
-* Internal tools: packaging, cprorab (c++/cmake), aptlier (cli для работы с aptly),
-    orion-buildbot, package-description, testing
+* Internal tools: packaging, cprorab (c++/cmake), aptlier,
+    package-description, testing, dockier
 * External tools: fpm, docker
 * Storage: aptly, docker registry, windows smb server
-
----
-
-# debian репозитории это просто!
-
-![repo](images/repo.png)
 
 ---
 
@@ -73,10 +67,16 @@
 
 * CI: buildbot (python 3), **gitlab-ci**
 * Targets: astra 1.5, ubuntu 16.04, docker, windows
-* Internal tools: packaging, cprorab (c++/cmake), aptlier (cli для работы с aptly),
-    orion-buildbot, package-description, testing
+* Internal tools: packaging, cprorab (c++/cmake), aptlier,
+    package-description, testing, dockier
 * External tools: fpm, docker
 * Storage: aptly, docker registry, windows smb server, **gitlab-pages**
+
+---
+
+# Buildbot vs Gitlab-CI
+
+* Features
 
 ---
 
@@ -92,6 +92,8 @@
 * много багов в страшном веб-интерфейсе
 * медленно разрабатывается
 * туманная документация
+* позициионируется как сервер сборки одного (!) проекта
+* сложно развернуть worker
 
 ---
 
@@ -115,6 +117,7 @@
 * отличная документация
 * можно исполнять команды в docker контейнере и использовать docker сервисы
 * активно разрабатывается
+* легко развернуть worker
 ## Cons:
 * не такой гибкий
 
@@ -122,59 +125,73 @@
 
 # Gitlab-CI
 
-## Pros:
-* интегрирован в gitlab
-    * pipeline начинается сразу после коммита
-    * не надо волноваться что к gitlab нет доступа (ssh ключи)
-    * описание pipeline-а всегда (!) рядом с проектом
-    * можно запретить merge в случае фейла
-* декларативный
-* отличная документация
-* можно исполнять команды в docker контейнере и использовать docker сервисы
-* активно разрабатывается
-## Cons:
-* не такой гибкий
+## Интегрирован в gitlab:
+* pipeline начинается сразу после коммита
 
 ---
 
 # Gitlab-CI
 
-## Pros:
-* интегрирован в gitlab
-    * pipeline начинается сразу после коммита
-    * не надо волноваться что к gitlab нет доступа (ssh ключи)
-    * описание pipeline-а всегда (!) рядом с проектом
-    * **можно запретить merge в случае фейла**
-* декларативный
-* отличная документация
-* можно исполнять команды в docker контейнере и использовать docker сервисы
-* активно разрабатывается
-## Cons:
-* не такой гибкий
+## Интегрирован в gitlab:
+* pipeline начинается сразу после коммита
+* не надо волноваться что к gitlab нет доступа (ssh ключи)
 
 ---
 
-# Chaotic
+# Gitlab-CI
 
-![commits-chaotic](images/commits-chaotic.png)
-
----
-
-# Regular
-
-![commits-regular](images/commits-regular.png)
+## Интегрирован в gitlab:
+* pipeline начинается сразу после коммита
+* не надо волноваться что к gitlab нет доступа (ssh ключи)
+* описание pipeline-а всегда (!) рядом с проектом
 
 ---
 
-# Buildbot pipeline
+# Gitlab-CI
+
+## Интегрирован в gitlab:
+* pipeline начинается сразу после коммита
+* не надо волноваться что к gitlab нет доступа (ssh ключи)
+* описание pipeline-а всегда (!) рядом с проектом
+* можно запретить merge в случае фейла
+
+---
+
+# Buildbot vs Gitlab-CI
+
+* Features
+* Pipeline
+
+---
+
+# Buildbot
 
 ![pipeline](images/buildbot-pipeline.png)
 
 ---
 
-# Gitlab-CI pipeline
+# Gitlab-CI
 
 ![pipeline](images/gitlab-pipeline.png)
+
+---
+
+# Buildbot vs Gitlab-CI
+
+* Features
+* Pipeline
+* ????????
+
+---
+
+# Buildbot vs Gitlab-CI
+
+* Features
+* Pipeline
+* ????????
+* **Gitlab-CI**
+
+![yep](images/yep.jpg)
 
 ---
 
@@ -190,6 +207,18 @@
     * pipeline succeed
     * squash commit
     * remove branch
+
+---
+
+# Master allowed
+
+![commits-chaotic](images/commits-chaotic.png)
+
+---
+
+# Master disabled
+
+![commits-regular](images/commits-regular.png)
 
 ---
 
